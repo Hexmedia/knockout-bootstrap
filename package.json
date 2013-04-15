@@ -23,7 +23,7 @@
     "jQuery": ">= 1.7.4",
     "twitter-bootstrap": ">= 2.1.1"
   },
-  "author": "Bill Pullen",
+  "author": "Bill Pullen, Krystian Kuczek",
   "license": "MIT",
   "readmeFilename": "README.md"
 }
