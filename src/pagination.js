@@ -1,51 +1,42 @@
 (function($) {
-	ko.pagiationModel = function() {
-		var self = this;
+	ko.pagiationModel = {
+		ViewModel: function(options) {
+			var self = this;
 
-		self.page = ko.observable(1);
-		self.pageSize = ko.observable(this.options.pageSize);
-		self.pageSizeOptions = ko.observableArray(this.options.pageSizeOptions);
-		self.showPages = ko.observable(this.options.showPages);
+			self.page = ko.observable(options.page);
+			self.pageSize = ko.observable(options.pageSize);
+			self.showPages = ko.observable(options.showPages);
 
-		self.goToPage = function(p) {
-			if (p >= 1 && p <= self.totalPages()) {
-				self.page(p);
-			}
-		};
+			self.goToPage = function(p) {
+				if (p >= 1 && p <= self.totalPages()) {
+					self.page(p);
+				}
+			};
 
-		self.prevPage = function() {
-			self.goToPage(self.page() - 1);
-		};
+			self.prevPage = function() {
+				self.goToPage(self.page() - 1);
+			};
 
-		self.nextPage = function() {
-			self.goToPage(self.page() + 1);
-		};
+			self.nextPage = function() {
+				self.goToPage(self.page() + 1);
+			};
 
-		self.firstPage = function() {
-			self.page(1);
-		};
+			self.firstPage = function() {
+				self.page(1);
+			};
 
-		self.lastPage = function() {
-			self.page(self.totalPages());
-		};
+			self.lastPage = function() {
+				self.page(self.totalPages());
+			};
+		}
 	};
-	
+
 	var te = new ko.nativeTemplateEngine();
 
 	te.addTemplate = function(name, html) {
 		document.write('<script type="text/html" id="' + name + '">' + html + '</script>');
 	};
-	
-	te.addTemplate('kb_pagination_page_size', '\
-			<div data-bind="foreach: pageSizeOptions">\
-				<!-- ko if: $data == $root.pageSize() -->\
-                    <span data-bind="text: $data"/>\
-                <!-- /ko -->\
-                <!-- ko if: $data != $root.pageSize() -->\
-                    <a href="#" data-bind="text: $data + \' \', click: function() { $root.pageSize($data) }"/>\
-                <!-- /ko -->\
-			</div>');
-	
+
 	te.addTemplate('kb_pagination', '\
 			<div data-bind="if: totalPages() > 1">\
 				<div class="pagination">\

@@ -12,7 +12,7 @@ function guid() {
 // Outer HTML
 (function($) {
 	$.fn.outerHtml = function() {
-		if (this.length == 0)
+		if (this.length === 0)
 			return false;
 		var elem = this[0], name = elem.tagName.toLowerCase();
 		if (elem.outerHTML)

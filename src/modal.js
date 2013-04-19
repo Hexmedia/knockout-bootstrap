@@ -31,9 +31,6 @@ ko.modalModel = function() {
 };
 
 ko.modalButtonModel = function() {
-	this.action = function() {
-		alert('aa');
-	};
 	this.name = ko.observable();
 };
 
