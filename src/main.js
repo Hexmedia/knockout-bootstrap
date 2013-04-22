@@ -11,6 +11,12 @@ function guid() {
 
 ko.bootstrap = {};
 
+var te = new ko.nativeTemplateEngine();
+
+te.addTemplate = function(name, html) {
+	document.write('<script type="text/html" id="' + name + '">' + html + '</script>');
+};
+
 // Outer HTML
 (function($) {
 	$.fn.outerHtml = function() {

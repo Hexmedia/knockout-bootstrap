@@ -14,12 +14,6 @@
 		});
 	}
 
-	var te = new ko.nativeTemplateEngine();
-
-	te.addTemplate = function(name, html) {
-		document.write('<script type="text/html" id="' + name + '">' + html + '</script>');
-	};
-
 	te.addTemplate('kb_table_header', '\
 		<thead><tr>\
 			<!-- ko foreach: columns -->\
@@ -45,7 +39,6 @@
 
 			ko.renderTemplate(tableHeaderTemplate, viewModel, {templateEngine: te}, $('<div />').appendTo(element), "replaceNode");
 			ko.renderTemplate(tableListTemplate, viewModel, {templateEngine: te}, $('<div />').appendTo(element), "replaceNode");
-
 		}
 	};
 }(jQuery));

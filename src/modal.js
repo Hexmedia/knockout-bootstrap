@@ -1,12 +1,60 @@
+(function($) {
+	ko.bootstrap.ModalModel = function(options) {
+		var self = this;
 
+		if (typeof options === 'undefined') {
+			options = {};
+		}
 
-var te = new ko.nativeTemplateEngine();
+		options = $.extend({
+			buttonTemplate: 'kb_modal_button'
+		}, options);
 
-te.addTemplate = function(name, html) {
-	document.write('<script type="text/html" id="' + name + '">' + html + '</script>');
-};
+		self.buttonTemplate = 'kb_modal_button';
 
-te.addTemplate("kb_modal", '\
+		self.title = ko.observable();
+		self.body = ko.observable();
+		self.buttonsData = ko.observableArray([]);
+		self.id = ko.observable();
+
+		self.buttons = ko.computed(function() {
+			for (var b in self.buttonsData()) {
+				self.buttonsData()[b].id(self.id());
+			}
+
+			return self.buttonsData();
+		});
+	};
+
+	ko.bootstrap.ModalButtonModel = function(options) {
+		var self = this;
+
+		if (typeof options === 'undefined') {
+			options = {};
+		}
+
+		options = $.extend({
+			clazz: 'btn',
+			name: 'Cancel',
+			action: null
+		}, options);
+
+		console.log(options);
+
+		self.id = ko.observable();
+		self.clazz = ko.observable(options.clazz);
+		self.name = ko.observable(options.name);
+
+		self.action = function() {
+			if (typeof options.action === 'function') {
+				options.action();
+			} else {
+				$("#" + self.id()).modal('hide');
+			}
+		};
+	};
+
+	te.addTemplate("kb_modal", '\
 	<div class="modal hide fade" data-bind="attr: {\'id\': id}">\
 		<div class="modal-header">\
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\
@@ -14,93 +62,31 @@ te.addTemplate("kb_modal", '\
 		</div>\
 		<div class="modal-body" data-bind="html:body">\
 		</div>\
-		<div class="modal-footer">\
+		<div class="modal-footer" data-bind="foreach: buttons">\
+			<!-- ko template: {\'name\': $parent.buttonTemplate} -->\
+			<!-- /ko -->\
 		</div>\
 	</div>');
 
-te.addTemplate("kb_modal_button", '\
-	<div class="btn" data-bind="click: action, text:name"></div>\
-');
+	te.addTemplate("kb_modal_button", '\
+			<div data-bind="click: action, text:name, attr: {\'class\': clazz}"></div>\
+		');
 
-ko.modalModel = function() {
-	this.title = ko.observable();
-	this.body = ko.observable();
-	this.buttons = ko.observableArray([]);
-	this.id = ko.observable();
-	this.buttonTemplate = ko.observable();
-};
+	ko.bindingHandlers.modal = {
+		init: function() {
+			return {'controlsDescendantBindings': true};
+		},
+		update: function(element, valueAccessor, allBindingsAccessor, vm, bindingContext) {
+			var viewModel = valueAccessor(), allBindings = allBindingsAccessor();
 
-ko.modalButtonModel = function() {
-	this.name = ko.observable();
-};
+			var template = allBindings.headerTemplate || "kb_modal";
+			var action = allBindings.action || "click";
 
-var modalModel = {};
+			ko.renderTemplate(template, viewModel, {templateEngine: te}, $('<div />').appendTo($('body')), "replaceNode");
 
-ko.bindingHandlers.modal = {
-	init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-		// read popover options 
-		var bindingValues = ko.utils.unwrapObservable(valueAccessor());
-
-		// set popover title 
-		var title = bindingValues.title;
-		var body = bindingValues.body;
-		var buttons = bindingValues.buttons;
-		var template = bindingValues.template || "kb_modal";
-		var id = template + "_modal";
-		var buttonTemplate = bindingValues.buttonTemplate || "kb_modal_button";
-
-		// set popover trigger
-		var trigger = bindingValues.trigger || "click";
-
-		$(element).bind(trigger, function() {
-			$("#" + id).modal();
-		});
-
-		if (!$("#" + id).length) {
-			modalModel[id] = new ko.modalModel();
+			$(element).bind(action, function() {
+				$("#" + viewModel().id()).modal('show');
+			});
 		}
-
-		modalModel[id].title(title);
-		modalModel[id].body(body);
-		modalModel[id].id(id);
-		modalModel[id].buttonTemplate(buttonTemplate);
-
-		if (!$("#" + id).length) {
-			ko.renderTemplate(template, modalModel[id], {templateEngine: te}, $('<div />').prependTo($('body')), "replaceNode");
-		}
-	},
-	update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-		// read popover options 
-		var bindingValues = ko.utils.unwrapObservable(valueAccessor());
-
-		// set popover title 
-		var template = bindingValues.template || "kb_modal";
-		var buttonTemplate = bindingValues.template || "kb_modal_button";
-
-		var id = template + "_modal";
-		var buttons = bindingValues.buttons;
-
-		$("#" + id).find('.modal-footer').html("");
-
-		for (var i in buttons) {
-			var button = new ko.modalButtonModel();
-
-			if (typeof buttons[i].action === "function") {
-				button.action = function() {
-					buttons[i].action();
-					$("#" + id).modal('hide');
-				};
-			} else {
-				button.action = function() {
-					$('#' + id).modal("hide");
-				};
-			}
-
-			button.name(buttons[i].name);
-
-			ko.renderTemplate(buttonTemplate, button, {templateEngine: te}, $('<div />').appendTo($("#" + id).find('.modal-footer')), "replaceNode");
-		}
-	},
-	options: {
-	}
-};
+	};
+}(jQuery));

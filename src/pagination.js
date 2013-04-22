@@ -6,12 +6,12 @@
 			options = {};
 		}
 
-		$.extend(true, options, {
+		options = $.extend({
 			page: 1,
 			pageSize: 10,
 			showPages: 10,
 			itemCount: 1
-		});
+		}, options);
 
 		self.page = ko.observable(options.page);
 		self.pageSize = ko.observable(10);
@@ -19,8 +19,7 @@
 		self.itemCount = ko.observable();
 
 		self.totalPages = ko.computed(function() {
-			console.log(self.itemCount(), self.pageSize(), self.itemCount() / self.pageSize())
-			return Math.ceil(self.itemCount() / self.pageSize());
+			return Math.ceil(self.itemCount() / self.pageSize()) || 1;
 		});
 
 		self.goToPage = function(p) {
@@ -79,12 +78,6 @@
 
 			return pages;
 		});
-	};
-
-	var te = new ko.nativeTemplateEngine();
-
-	te.addTemplate = function(name, html) {
-		document.write('<script type="text/html" id="' + name + '">' + html + '</script>');
 	};
 
 	te.addTemplate('kb_pagination', '\
