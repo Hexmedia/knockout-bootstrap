@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 		}
 		return data;
 	};
-	var srcHintOptions = readOptionalJSON("src/.jshintrc");
+//	var srcHintOptions = readOptionalJSON("src/.jshintrc");
 
 	delete srcHintOptions.onevar;
 
@@ -354,7 +354,7 @@ module.exports = function(grunt) {
 	// Load grunt tasks from NPM packages
 	grunt.loadNpmTasks("grunt-compare-size");
 	grunt.loadNpmTasks("grunt-git-authors");
-	grunt.loadNpmTasks("grunt-contrib-jshint");
+//	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 
 	// Default task(s).
