@@ -35,6 +35,15 @@
 		self.hide = function() {
 			self.modal().modal("hide");
 		};
+		
+		self.close = function() {
+			self.hide();
+			self.remove();
+		};
+		
+		self.remove = function() {
+			self.modal().remove();
+		};
 	};
 
 	ko.bootstrap.ModalButtonModel = function(options) {
@@ -43,13 +52,13 @@
 		if (typeof options === 'undefined') {
 			options = {};
 		}
-
+		
 		options = $.extend({
 			clazz: 'btn',
 			name: 'Cancel',
 			action: null
 		}, options);
-
+		
 		self.clazz = ko.observable(options.clazz);
 		self.name = ko.observable(options.name);
 		self.modal = ko.observable();
@@ -62,7 +71,7 @@
 			if (typeof options.action === 'function') {
 				options.action();
 			} else {
-				self.modal().hide();
+				self.modal().close();
 			}
 		};
 	};
@@ -94,11 +103,10 @@
 
 			var template = allBindings.headerTemplate || "kb_modal";
 			var action = allBindings.action || "click";
-
-			ko.renderTemplate(template, viewModel, {templateEngine: te}, $('<div />').appendTo($('body')), "replaceNode");
-
+			
 			$(element).bind(action, function() {
-				$("#" + viewModel().id()).modal('show');
+				ko.renderTemplate(template, viewModel, {templateEngine: te}, $('<div />').appendTo($('body')), "replaceNode");
+				viewModel().show();
 			});
 		}
 	};
