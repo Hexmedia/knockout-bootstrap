@@ -2,19 +2,21 @@
 // Bind Twitter Tooltip
 ko.bindingHandlers.tooltip = {
 	init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+		var tooltipBindingValues, tooltipTitle, tooltipPlacement, options;
+
 		// read tooltip options
-		var tooltipBindingValues = ko.utils.unwrapObservable(valueAccessor());
+		tooltipBindingValues = ko.utils.unwrapObservable(valueAccessor());
 
 		// set tooltip title
-		var tooltipTitle = tooltipBindingValues.title;
+		tooltipTitle = tooltipBindingValues.title;
 
 		// set tooltip placement
-		var tooltipPlacement = tooltipBindingValues.placement;
+		tooltipPlacement = tooltipBindingValues.placement;
 
 		// set tooltip trigger
-		var tooltipTrigger = tooltipBindingValues.trigger;
+		tooltipTrigger = tooltipBindingValues.trigger;
 
-		var options = {
+		options = {
 			title: tooltipTitle
 		};
 

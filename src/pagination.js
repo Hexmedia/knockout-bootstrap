@@ -26,7 +26,7 @@
 			if (p >= 1 && p <= self.totalPages()) {
 				self.page(p);
 
-				if (typeof options.goToPage === 'function') {
+				if (typeof options.goToPage === "function") {
 					options.goToPage(p);
 				}
 			}
@@ -58,11 +58,11 @@
 
 
 		this.pages = ko.computed(function() {
-			var pages = [];
+			var pages = [], s, e, r;
 
-			var s = Math.floor(Math.max(1, self.page() - self.showPages() / 2));
-			var e = Math.floor(Math.min(self.totalPages(), self.page() + self.showPages() / 2));
-			var r = e - s;
+			s = Math.floor(Math.max(1, self.page() - self.showPages() / 2));
+			e = Math.floor(Math.min(self.totalPages(), self.page() + self.showPages() / 2));
+			r = e - s;
 
 			if (r < self.showPages()) {
 				if (e === self.totalPages() && s !== 1) {
@@ -80,39 +80,39 @@
 		});
 	};
 
-	te.addTemplate('kb_pagination', '\
-			<div data-bind="if: totalPages() > 1">\
-				<div class="pagination">\
+	te.addTemplate("kb_pagination", "\
+			<div data-bind=\"if: totalPages() > 1\">\
+				<div class=\"pagination\">\
 					<ul>\
-						<li data-bind="css:{disabled:isFirstPage()}">\
-							<a href="#" data-bind="click: $root.firstPage">« first</a>\
+						<li data-bind=\"css:{disabled:isFirstPage()}\">\
+							<a href=\"#\" data-bind=\"click: $root.firstPage\">« first</a>\
 						</li>\
-						<li data-bind="css:{disabled:isFirstPage()}">\
-							<a href="#" data-bind="click: $root.prevPage">« prev</a>\
+						<li data-bind=\"css:{disabled:isFirstPage()}\">\
+							<a href=\"#\" data-bind=\"click: $root.prevPage\">« prev</a>\
 						</li>\
 						<!-- ko foreach: pages() -->\
-							<li data-bind="css: { active: $data === ($root.page()), disabled: $data == ($root.page())}">\
-								<a href="#" data-bind="text: $data, click: $root.goToPage"/>\
+							<li data-bind=\"css: { active: $data === ($root.page()), disabled: $data == ($root.page())}\">\
+								<a href=\"#\" data-bind=\"text: $data, click: $root.goToPage\"/>\
 							</li>\
 						<!-- /ko -->\
-						<li data-bind="css: { disabled: isLastPage() }">\
-							<a href="#" data-bind="click: $root.nextPage">next »</a>\
+						<li data-bind=\"css: { disabled: isLastPage() }\">\
+							<a href=\"#\" data-bind=\"click: $root.nextPage\">next »</a>\
 						</li>\
-						<li data-bind="css: { disabled: isLastPage() }">\
-							<a href="#" data-bind="click: $root.lastPage">last »</a>\
+						<li data-bind=\"css: { disabled: isLastPage() }\">\
+							<a href=\"#\" data-bind=\"click: $root.lastPage\">last »</a>\
 						</li>\
 					</ul>\
 				</div>\
-			</div>');
+			</div>");
 
 	ko.bindingHandlers.pagination = {
 		init: function(element, valueAccessor, allBindingsAccessor) {
-			return {'controlsDescendantBindings': true};
+			return {"controlsDescendantBindings": true};
 		},
 		update: function(element, valueAccessor, allBindingsAccessor) {
-			var viewModel = valueAccessor(), allBindings = allBindingsAccessor();
+			var viewModel = valueAccessor(), allBindings = allBindingsAccessor(), template;
 
-			var template = allBindings.headerTemplate || "kb_pagination";
+			template = allBindings.headerTemplate || "kb_pagination";
 
 			ko.renderTemplate(template, viewModel, {templateEngine: te}, element, "replaceNode");
 		}

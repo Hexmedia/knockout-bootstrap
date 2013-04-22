@@ -19,8 +19,7 @@ module.exports = function(grunt) {
 		return data;
 	};
 //	var srcHintOptions = readOptionalJSON("src/.jshintrc");
-
-	delete srcHintOptions.onevar;
+//	delete srcHintOptions.onevar;
 
 	// Project configuration.
 	grunt.initConfig({
