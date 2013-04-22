@@ -16,14 +16,25 @@
 		self.body = ko.observable();
 		self.buttonsData = ko.observableArray([]);
 		self.id = ko.observable();
+		self.modal = function() {
+			return $("#" + self.id());
+		};
 
 		self.buttons = ko.computed(function() {
 			for (var b in self.buttonsData()) {
-				self.buttonsData()[b].id(self.id());
+				self.buttonsData()[b].modal(self);
 			}
 
 			return self.buttonsData();
 		});
+
+		self.show = function() {
+			self.modal().modal("show");
+		};
+
+		self.hide = function() {
+			self.modal().modal("hide");
+		};
 	};
 
 	ko.bootstrap.ModalButtonModel = function(options) {
@@ -39,17 +50,19 @@
 			action: null
 		}, options);
 
-		console.log(options);
-
-		self.id = ko.observable();
 		self.clazz = ko.observable(options.clazz);
 		self.name = ko.observable(options.name);
+		self.modal = ko.observable();
+
+		self.id = ko.computed(function() {
+			return (self.modal() ? self.modal().id() : null);
+		});
 
 		self.action = function() {
 			if (typeof options.action === 'function') {
 				options.action();
 			} else {
-				$("#" + self.id()).modal('hide');
+				self.modal().hide();
 			}
 		};
 	};
