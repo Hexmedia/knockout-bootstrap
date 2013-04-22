@@ -50,7 +50,9 @@ module.exports = function(grunt) {
 					"src/progress.js",
 					"src/table.js",
 					"src/tooltip.js",
-					"src/typehead.js"
+					"src/typehead.js",
+					"src/radio.js",
+					"src/checkbox.js"
 				]
 			}
 		},
