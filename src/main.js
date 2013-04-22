@@ -9,6 +9,8 @@ function guid() {
 	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
 
+ko.bootstrap = {};
+
 // Outer HTML
 (function($) {
 	$.fn.outerHtml = function() {

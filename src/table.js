@@ -1,24 +1,18 @@
 (function($) {
-	ko.dataTable = {
-		ViewModel: function(options) {
-			var self = this;
-			
-			this.items = ko.observableArray(options.items);
-			this.columns = ko.observableArray(options.columns)
-			
-			this.itemsCount = ko.computed(function() {
-				return self.items().length;
-			});
+	ko.bootstrap.TableModel = function() {
+		var self = this;
 
-			this.columnsCount = ko.computed(function() {
-				return self.columns().length;
-			});
+		this.items = ko.observableArray([]);
+		this.columns = ko.observableArray([]);
 
-			/*this.content = ko.computed(function() {
-				self.dataBind();
-			}); */
-		}
-	};
+		this.itemsCount = ko.computed(function() {
+			return self.items().length;
+		});
+
+		this.columnsCount = ko.computed(function() {
+			return self.columns().length;
+		});
+	}
 
 	var te = new ko.nativeTemplateEngine();
 
@@ -28,40 +22,30 @@
 
 	te.addTemplate('kb_table_header', '\
 		<thead><tr>\
-				<th data-bind="template: {\'name\':\'kbl_group_all\', \'data\':$data}"></th>\
-			<!-- ko foreach: columnsData -->\
-				<th>\
-					<!-- ko if: $data.sortable -->\
-					<a data-bind="html: display, click: $root.doSort"></a>\
-					<!-- /ko -->\
-					<!-- ko ifnot: $data.sortable -->\
+			<!-- ko foreach: columns -->\
+				<th data-bind="attr: {\'class\': name}">\
 					<div data-bind="html: display"></div>\
-					<!-- /ko -->\
 				</th>\
 			<!-- /ko -->\
 		</tr></thead>');
 	te.addTemplate('kb_table_item', '<tbody data-bind="foreach: items">\
-			<tr>\
-				<td data-bind="template: { \'name\': \'kbl_group\', \'data\': $data }"></td>\
-				<!-- ko foreach: $parent.columnsData -->\
+			<tr data-bind="foreach: $parent.columns">\
 				<td data-bind="html: $parent[name]"></td>\
-				<!-- /ko -->\
-				<td data-bind="template: { \'name\': \'kbl_actions\', \'data\': $data }"></td>\
 			</tr></tbody>');
 
-	ko.bindingHandlers.dataTable = {
+	ko.bindingHandlers.table = {
 		init: function(element, valueAccessor, allBindingsAccessor) {
-			var viewModel = valueAccessor(), allBindings = allBindingsAccessor();
-
-			var tableHeaderTemplate = allBindings.headerTemplate || "kb_table_header";
-			var tableListTemplate = allBindings.itemTemplate || "kbl_table_item";
-
-			ko.renderTemplate(tableHeaderTemplate, viewModel, {templateEngine: te}, $('<div />').appendTo(table), "replaceNode");
-			ko.renderTemplate(tableListTemplate, viewModel, {templateEngine: te}, $('<div />').appendTo(table), "replaceNode");
-			
 			return {'controlsDescendantBindings': true};
 		},
 		update: function(element, valueAccessor, allBindingsAccessor) {
+			var viewModel = valueAccessor(), allBindings = allBindingsAccessor();
+
+			var tableHeaderTemplate = allBindings.headerTemplate || "kb_table_header";
+			var tableListTemplate = allBindings.itemTemplate || "kb_table_item";
+
+			ko.renderTemplate(tableHeaderTemplate, viewModel, {templateEngine: te}, $('<div />').appendTo(element), "replaceNode");
+			ko.renderTemplate(tableListTemplate, viewModel, {templateEngine: te}, $('<div />').appendTo(element), "replaceNode");
+
 		}
 	};
 }(jQuery));
