@@ -14,7 +14,7 @@
 		});
 	};
 
-	te.addTemplate("kb_table_header", "\
+	ko.bootstrap.te.addTemplate("kb_table_header", "\
 		<thead><tr>\
 			<!-- ko foreach: columns -->\
 				<th data-bind=\"attr: {'class': name}\">\
@@ -22,7 +22,7 @@
 				</th>\
 			<!-- /ko -->\
 		</tr></thead>");
-	te.addTemplate("kb_table_item", "<tbody data-bind=\"foreach: items\">\
+	ko.bootstrap.te.addTemplate("kb_table_item", "<tbody data-bind=\"foreach: items\">\
 			<tr data-bind=\"foreach: $parent.columns\">\
 				<td data-bind=\"html: $parent[name]\"></td>\
 			</tr></tbody>");
@@ -37,8 +37,8 @@
 			tableHeaderTemplate = allBindings.headerTemplate || "kb_table_header";
 			tableListTemplate = allBindings.itemTemplate || "kb_table_item";
 
-			ko.renderTemplate(tableHeaderTemplate, viewModel, {templateEngine: te}, $("<div />").appendTo(element), "replaceNode");
-			ko.renderTemplate(tableListTemplate, viewModel, {templateEngine: te}, $("<div />").appendTo(element), "replaceNode");
+			ko.renderTemplate(tableHeaderTemplate, viewModel, {templateEngine: ko.bootstrap.te}, $("<div />").appendTo(element), "replaceNode");
+			ko.renderTemplate(tableListTemplate, viewModel, {templateEngine: ko.bootstrap.te}, $("<div />").appendTo(element), "replaceNode");
 		}
 	};
 }(jQuery));

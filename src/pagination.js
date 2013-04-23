@@ -2,16 +2,12 @@
 	ko.bootstrap.PaginationModel = function(options) {
 		var self = this;
 
-		if (typeof options === "undefined") {
-			options = {};
-		}
-
 		options = $.extend({
 			page: 1,
 			pageSize: 10,
 			showPages: 10,
 			itemCount: 1
-		}, options);
+		}, options || {});
 
 		self.page = ko.observable(options.page);
 		self.pageSize = ko.observable(10);
@@ -80,15 +76,15 @@
 		});
 	};
 
-	te.addTemplate("kb_pagination", "\
-			<div data-bind=\"if: totalPages() > 1\">\
+	ko.bootstrap.te.addTemplate("kb_pagination", "\
+			<!-- ko if: totalPages() > 1 -->\
 				<div class=\"pagination\">\
 					<ul>\
 						<li data-bind=\"css:{disabled:isFirstPage()}\">\
-							<a href=\"#\" data-bind=\"click: $root.firstPage\">« first</a>\
+							<a href=\"#\" data-bind=\"click: $root.firstPage\">&laquo; first</a>\
 						</li>\
 						<li data-bind=\"css:{disabled:isFirstPage()}\">\
-							<a href=\"#\" data-bind=\"click: $root.prevPage\">« prev</a>\
+							<a href=\"#\" data-bind=\"click: $root.prevPage\">&laquo; prev</a>\
 						</li>\
 						<!-- ko foreach: pages() -->\
 							<li data-bind=\"css: { active: $data === ($root.page()), disabled: $data == ($root.page())}\">\
@@ -96,17 +92,17 @@
 							</li>\
 						<!-- /ko -->\
 						<li data-bind=\"css: { disabled: isLastPage() }\">\
-							<a href=\"#\" data-bind=\"click: $root.nextPage\">next »</a>\
+							<a href=\"#\" data-bind=\"click: $root.nextPage\">next &raquo;</a>\
 						</li>\
 						<li data-bind=\"css: { disabled: isLastPage() }\">\
-							<a href=\"#\" data-bind=\"click: $root.lastPage\">last »</a>\
+							<a href=\"#\" data-bind=\"click: $root.lastPage\">last &raquo;</a>\
 						</li>\
 					</ul>\
 				</div>\
-			</div>");
+			<!-- /ko -->");
 
 	ko.bindingHandlers.pagination = {
-		init: function(element, valueAccessor, allBindingsAccessor) {
+		init: function() {
 			return {"controlsDescendantBindings": true};
 		},
 		update: function(element, valueAccessor, allBindingsAccessor) {
@@ -114,7 +110,7 @@
 
 			template = allBindings.headerTemplate || "kb_pagination";
 
-			ko.renderTemplate(template, viewModel, {templateEngine: te}, element, "replaceNode");
+			ko.renderTemplate(template, viewModel, {templateEngine: ko.bootstrap.te}, element, "replaceNode");
 		}
 	};
 })(jQuery);

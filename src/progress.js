@@ -10,7 +10,7 @@ ko.bindingHandlers.progress = {
 			"data-bind": "style: { width:" + valueAccessor() + " }"
 		});
 
-		$element.attr("id", guid())
+		$element.attr("id", ko.bootstrap.guid())
 				.addClass("progress progress-info")
 				.append(bar);
 		ko.applyBindingsToDescendants(viewModel, $element[0]);

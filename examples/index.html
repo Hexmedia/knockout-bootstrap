@@ -18,35 +18,35 @@
         <link rel="stylesheet" href="css/prettify.css" />
     </head>
     <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
-        <!--[if lt IE 7]>
+        <!--[if lt IE 9]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
         <div class="navbar navbar-inverse navbar-fixed-top">
-          <div class="navbar-inner">
-            <div class="container">
-              <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="brand" href="./index.html">Knockout-Bootstrap</a>
-              <div class="nav-collapse collapse">
-                <ul class="nav">
-                  <li class="">
-                    <a href="./index.html">Home</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+			<div class="navbar-inner">
+				<div class="container">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="brand" href="./index.html">Knockout-Bootstrap</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li class="">
+								<a href="./index.html">Home</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
         </div>
 
         <header class="jumbotron subhead">
-          <div class="container">
-            <h1>Knockout-Bootstrap</h1>
-            <p class="lead">Create rich two way interactions with Boostrap and Knockout bindings
-          </p></div>
+			<div class="container">
+				<h1>Knockout-Bootstrap</h1>
+				<p class="lead">Create rich two way interactions with Boostrap and Knockout bindings
+				</p></div>
         </header>
 
         <!-- Add your site or application content here -->
@@ -60,6 +60,11 @@
                         <li class=""><a href="#alert"><i class="icon-chevron-right"></i> Alert</a></li>
                         <li class=""><a href="#progress"><i class="icon-chevron-right"></i> Progress Bar</a></li>
                         <li class=""><a href="#typeahead"><i class="icon-chevron-right"></i> Typeahead</a></li>
+                        <li class=""><a href="#table"><i class="icon-chevron-right"></i> Table</a></li>
+                        <li class=""><a href="#modal"><i class="icon-chevron-right"></i> Modal</a></li>
+                        <li class=""><a href="#confirm"><i class="icon-chevron-right"></i> Confirm</a></li>
+                        <li class=""><a href="#pagination"><i class="icon-chevron-right"></i> Pagination</a></li>
+                        <li class=""><a href="#carousel"><i class="icon-chevron-right"></i> Carousel</a></li>
                     </ul>
                 </div>
                 <div class="span9">
@@ -72,14 +77,14 @@
                             to Bootstrap javascript widgets. 
                         </p>
                         <p>
-                            <h4>Features</h4>
-                            <ul>
-                                <li>Enable Bootstrap widgets with <code>data-bind</code> attribute</li>
-                                <li>Two way bindings of observables inside bootstrap elements</li>
-                                <li>Use knockout templates to create widget content</li>
-                                <li>Keeps your coding style consistent</li>
-                                <li>~2kb</li>
-                            </ul>
+						<h4>Features</h4>
+						<ul>
+							<li>Enable Bootstrap widgets with <code>data-bind</code> attribute</li>
+							<li>Two way bindings of observables inside bootstrap elements</li>
+							<li>Use knockout templates to create widget content</li>
+							<li>Keeps your coding style consistent</li>
+							<li>~2kb</li>
+						</ul>
                         </p>
                         <a class="btn btn-large btn-primary" href="https://raw.github.com/billpull/knockout-bootstrap/master/build/knockout-bootstrap.min.js" download="knockout-bootstrap.min.js">
                             <i class="icon-download-alt icon-white"></i> Download</a>
@@ -93,41 +98,41 @@
                             <p class="muted" style="margin-bottom: 0;">Tight pants next level keffiyeh <a href="#" data-bind="tooltip: {title: 'Default tooltip'}">you probably</a> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel <a href="#" data-bind="tooltip: {title: 'Another tooltip', placement: 'right'}">have a</a> terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray.
                             </p>
                         </div>
-<pre class="prettyprint linenums">
+						<pre class="prettyprint linenums">
 &lt;a href="#" data-bind="tooltip: {title: 'Default tooltip'}"&gt;you probably&lt;/a&gt;
 &lt;a href="#" data-bind="tooltip: {title: 'Another tooltip', placement: 'right'}"&gt;have a&lt;/a&gt;
-</pre>
+						</pre>
                         <h3>Options</h3>
                         <table class="table table-bordered table-striped">
                             <thead>
-                             <tr>
-                               <th style="width: 100px;">Name</th>
-                               <th style="width: 100px;">type</th>
-                               <th style="width: 50px;">default</th>
-                               <th>description</th>
-                             </tr>
+								<tr>
+									<th style="width: 100px;">Name</th>
+									<th style="width: 100px;">type</th>
+									<th style="width: 50px;">default</th>
+									<th>description</th>
+								</tr>
                             </thead>
                             <tbody>
-                             <tr>
-                               <td>placement</td>
-                               <td>string | function</td>
-                               <td>'top'</td>
-                               <td>how to position the tooltip - top | bottom | left | right</td>
-                             </tr>
-                             <tr>
-                               <td>title</td>
-                               <td>string | function</td>
-                               <td>''</td>
-                               <td>default title value if `title` tag isn't present</td>
-                             </tr>
-                             <tr>
-                               <td>trigger</td>
-                               <td>string</td>
-                               <td>'hover focus'</td>
-                               <td>how tooltip is triggered - click | hover | focus | manual. Note you case pass trigger mutliple, space seperated, trigger types.</td>
-                             </tr>
+								<tr>
+									<td>placement</td>
+									<td>string | function</td>
+									<td>'top'</td>
+									<td>how to position the tooltip - top | bottom | left | right</td>
+								</tr>
+								<tr>
+									<td>title</td>
+									<td>string | function</td>
+									<td>''</td>
+									<td>default title value if `title` tag isn't present</td>
+								</tr>
+								<tr>
+									<td>trigger</td>
+									<td>string</td>
+									<td>'hover focus'</td>
+									<td>how tooltip is triggered - click | hover | focus | manual. Note you case pass trigger mutliple, space seperated, trigger types.</td>
+								</tr>
                             </tbody>
-                          </table>
+						</table>
                     </section>
                     <section id="popover">
                         <div class="page-header">
@@ -145,7 +150,7 @@
 
                             <button class="btn btn-large btn-primary" data-bind="popover: {template: 'popoverTemplate', title: 'Oh Yea', trigger: 'focus'}">Focus Simple Popover</button>
                         </div>
-<pre class="prettyprint linenums">
+						<pre class="prettyprint linenums">
 &lt;button class="btn" data-bind="popover: {template: 'popoverTemplate', title: 'Oh Yea'}"&gt;
     Launch Simple Popover
 &lt;/button&gt;
@@ -154,7 +159,7 @@
     &lt;button class="close pull-right" type="button" data-dismiss="popover"&gt;&times&lt;/button&gt;
     Hey I am some content in A popover
 &lt;/script&gt;
-</pre>
+						</pre>
                         <h3>Two Way Binding Popover</h3>
                         <p>
                             Manipulate data from within a popover
@@ -163,7 +168,7 @@
                             <h1 data-bind="text: popoverBindingHeader"></h1>
                             <button class="btn btn-large btn-primary" data-bind="popover: {template: 'popoverBindingTemplate', title: 'Oh Yea Binding'}">Launch Binding Popover</button>
                         </div>
-<pre class="prettyprint linenums">
+						<pre class="prettyprint linenums">
 &lt;h1 data-bind="text: popoverBindingHeader"&gt;&lt;/h1&gt;
 &lt;button class="btn" data-bind="popover: {template: 'popoverBindingTemplate', title: 'Oh Yea Binding'}"&gt;
     Launch Binding Popover
@@ -176,43 +181,43 @@
         &lt;input type="text" data-bind="value: popoverBindingHeader, valueUpdate:'afterkeydown'" /&gt;
     &lt;/form&gt;
 &lt;/script&gt;
-</pre>
+						</pre>
                         <h3>Options</h3>
                         <table class="table table-bordered table-striped">
-                          <thead>
-                           <tr>
-                             <th style="width: 100px;">Name</th>
-                             <th style="width: 100px;">type</th>
-                             <th style="width: 50px;">default</th>
-                             <th>description</th>
-                           </tr>
-                          </thead>
-                          <tbody>
-                           <tr>
-                             <td>placement</td>
-                             <td>string | function</td>
-                             <td>'right'</td>
-                             <td>how to position the popover - top | bottom | left | right</td>
-                           </tr>
-                           <tr>
-                             <td>trigger</td>
-                             <td>string</td>
-                             <td>'click'</td>
-                             <td>how popover is triggered - click | hover | focus | manual</td>
-                           </tr>
-                           <tr>
-                             <td>title</td>
-                             <td>string | function</td>
-                             <td>''</td>
-                             <td>default title value if `title` attribute isn't present</td>
-                           </tr>
-                           <tr>
-                             <td>template</td>
-                             <td>string</td>
-                             <td>''</td>
-                             <td>the id to the template for the content</td>
-                           </tr>
-                          </tbody>
+							<thead>
+								<tr>
+									<th style="width: 100px;">Name</th>
+									<th style="width: 100px;">type</th>
+									<th style="width: 50px;">default</th>
+									<th>description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>placement</td>
+									<td>string | function</td>
+									<td>'right'</td>
+									<td>how to position the popover - top | bottom | left | right</td>
+								</tr>
+								<tr>
+									<td>trigger</td>
+									<td>string</td>
+									<td>'click'</td>
+									<td>how popover is triggered - click | hover | focus | manual</td>
+								</tr>
+								<tr>
+									<td>title</td>
+									<td>string | function</td>
+									<td>''</td>
+									<td>default title value if `title` attribute isn't present</td>
+								</tr>
+								<tr>
+									<td>template</td>
+									<td>string</td>
+									<td>''</td>
+									<td>the id to the template for the content</td>
+								</tr>
+							</tbody>
                         </table>
                     </section>
                     <section id="alert">
@@ -225,7 +230,7 @@
                                 <div data-bind="alert: $data"></div>
                             </div>
                         </div>
-<pre class="prettyprint linenums">
+						<pre class="prettyprint linenums">
 &lt;!-- View Code --&gt;
 &lt;div data-bind="foreach: alerts"&gt;
     &lt;div data-bind="alert: $data">&lt;/div&gt;
@@ -244,32 +249,32 @@ var ViewModel = function() {
     //....
     //...
 };
-</pre>
-    
+						</pre>
+
                         <h3>Options</h3>
                         <table class="table table-bordered table-striped">
-                          <thead>
-                           <tr>
-                             <th style="width: 100px;">Name</th>
-                             <th style="width: 100px;">type</th>
-                             <th style="width: 50px;">default</th>
-                             <th>description</th>
-                           </tr>
-                          </thead>
-                          <tbody>
-                           <tr>
-                             <td>message</td>
-                             <td>string</td>
-                             <td>''</td>
-                             <td>The message to be displayed in the alert</td>
-                           </tr>
-                           <tr>
-                             <td>priority</td>
-                             <td>string</td>
-                             <td>''</td>
-                             <td>The priority of the alert - error | warning | success | info</td>
-                           </tr>
-                          </tbody>
+							<thead>
+								<tr>
+									<th style="width: 100px;">Name</th>
+									<th style="width: 100px;">type</th>
+									<th style="width: 50px;">default</th>
+									<th>description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>message</td>
+									<td>string</td>
+									<td>''</td>
+									<td>The message to be displayed in the alert</td>
+								</tr>
+								<tr>
+									<td>priority</td>
+									<td>string</td>
+									<td>''</td>
+									<td>The priority of the alert - error | warning | success | info</td>
+								</tr>
+							</tbody>
                         </table>
                     </section>
                     <section id="progress">
@@ -284,7 +289,7 @@ var ViewModel = function() {
                             </form>
                             <div data-bind="progress: 'progressWidth'"></div>
                         </div>
-<pre class="prettyprint linenums">
+						<pre class="prettyprint linenums">
 &lt;!-- View Code --&gt;
 &lt;form&gt;
     &lt;label&gt;Update Progress Value Observable&lt;/label&gt;
@@ -303,25 +308,25 @@ var ViewModel = function() {
     //....
     //...
 };
-</pre>
+						</pre>
                         <h3>Options</h3>
                         <table class="table table-bordered table-striped">
-                          <thead>
-                           <tr>
-                             <th style="width: 100px;">Name</th>
-                             <th style="width: 100px;">type</th>
-                             <th style="width: 50px;">default</th>
-                             <th>description</th>
-                           </tr>
-                          </thead>
-                          <tbody>
-                           <tr>
-                             <td>width computed</td>
-                             <td>string</td>
-                             <td>''</td>
-                             <td>the name of the computed observable that returns the width percentage</td>
-                           </tr>
-                          </tbody>
+							<thead>
+								<tr>
+									<th style="width: 100px;">Name</th>
+									<th style="width: 100px;">type</th>
+									<th style="width: 50px;">default</th>
+									<th>description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>width computed</td>
+									<td>string</td>
+									<td>''</td>
+									<td>the name of the computed observable that returns the width percentage</td>
+								</tr>
+							</tbody>
                         </table>
                     </section>
                     <section id="typeahead">
@@ -334,7 +339,7 @@ var ViewModel = function() {
                             to the <code>data-bind="typeahead:"</code> binding and the items from that observable
                             array will be shown as suggestions in the input box. To show the binding nature of this
                             feature the example allows you to add and remove items from the array.
-                         <div class="bs-docs-example">
+						<div class="bs-docs-example">
                             <div class="row">
                                 <div class="span4">
                                     <form>
@@ -359,7 +364,7 @@ var ViewModel = function() {
                                 </div>
                             </div>
                         </div>
-<pre class="prettyprint linenums">
+						<pre class="prettyprint linenums">
 &lt;!-- View Code --&gt;
 &lt;div class="row"&gt;
     &lt;div class="span4"&gt;
@@ -407,70 +412,131 @@ var ViewModel = function() {
     //....
     //...
 };
-</pre>
+						</pre>
                     </section>
+					<section id="table">
+						<div class="page-header">
+                            <h1>Table</h1>
+                        </div>
+                        <h2>Examples</h2>
+					</section>
+					<section id="modal">
+						<div class="page-header">
+                            <h1>Modal</h1>
+                        </div>
+                        <h2>Examples</h2>
+					</section>
+					<section id="confirm">
+						<div class="page-header">
+                            <h1>Confirm</h1>
+                        </div>
+                        <h2>Examples</h2>
+					</section>
+					<section id="pagination">
+						<div class="page-header">
+                            <h1>Pagination</h1>
+                        </div>
+                        <h2>Examples</h2>
+					</section>
+					<section id="carousel">
+						<div class="page-header">
+                            <h1>Carousel</h1>
+                        </div>
+                        <h2>Examples</h2>
+						<p>The slideshow below shows a generic plugin and component for cycling through elements like a carousel.</p>
+						<div class="bs-docs-example">
+							<div id="myCarousel" data-bind="carousel: carouselData"></div>
+						</div>
+					</section>
                 </div>
             </div>
         </div>
 
-        <a href="https://github.com/billpull/knockout-bootstrap"><img style="position: absolute; top: 0; right: 0; border: 0;z-index:10001" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
-        
+        <a href="https://github.com/hexmedia/knockout-bootstrap"><img style="position: absolute; top: 0; right: 0; border: 0;z-index:10001" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/knockout.js"></script>
         <script src="js/prettify.js"></script>
-        <script src="../src/knockout-bootstrap.js"></script>
+        <script src="../dist/knockout-bootstrap.js"></script>
         <script>
-            var ExampleViewModel = function () {
-                var self = this;
+			var ExampleViewModel = function() {
+				var self = this, carouselData, slides;
 
-                self.popoverBindingHeader = ko.observable('Binding in A Popover');
-                self.alerts = ko.observableArray([
-                        {'message': 'Here is an Error', 'priority': 'error'},
-                        {'message': 'Here is a Warning', 'priority': 'warning'},
-                        {'message': 'Here is a Success', 'priority': 'success'},
-                        {'message': 'Here is some Info', 'priority': 'info'}
-                    ]);
-                self.progressVal = ko.observable(10);
-                self.progressWidth = ko.computed(function(){
-                    return self.progressVal() + '%';
-                }, self);
+				self.popoverBindingHeader = ko.observable('Binding in A Popover');
+				self.alerts = ko.observableArray([
+					{'message': 'Here is an Error', 'priority': 'error'},
+					{'message': 'Here is a Warning', 'priority': 'warning'},
+					{'message': 'Here is a Success', 'priority': 'success'},
+					{'message': 'Here is some Info', 'priority': 'info'}
+				]);
+				self.progressVal = ko.observable(10);
+				self.progressWidth = ko.computed(function() {
+					return self.progressVal() + '%';
+				}, self);
 
-                self.jsFrameworks = ko.observableArray([
-                        'Angular',
-                        'Canjs',
-                        'Batman',
-                        'Meteor',
-                        'Ember',
-                        'Backbone',
-                        'Knockout',
-                        'Knockback',
-                        'Spine',
-                        'Sammy',
-                        'YUI',
-                        'Closure',
-                        'jQuery'
-                    ]);
+				slides = ko.observableArray();
 
-                self.frameworkToAdd = ko.observable("");
-                self.addFramework = function() {
-                    self.jsFrameworks.push(self.frameworkToAdd());
-                };
+				slides.push(new ko.bootstrap.CarouselItemModel({
+					image: "http://twitter.github.io/bootstrap/assets/img/bootstrap-mdo-sfmoma-01.jpg",
+					title: "First Thumbnail label",
+					text: "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+				}));
 
-                self.removeFramework = function(framework) {
-                    self.jsFrameworks.remove(framework);
-                };
-            };
+				slides.push(new ko.bootstrap.CarouselItemModel({
+					image: "http://twitter.github.io/bootstrap/assets/img/bootstrap-mdo-sfmoma-02.jpg",
+					title: "Second Thumbnail label",
+					text: "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+				}));
 
-            $(function(){
-                // make code pretty
-                window.prettyPrint && prettyPrint();
+				slides.push(new ko.bootstrap.CarouselItemModel({
+					image: "http://twitter.github.io/bootstrap/assets/img/bootstrap-mdo-sfmoma-03.jpg",
+					title: "Third Thumbnail label",
+					text: "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+				}));
 
-                var viewModel = new ExampleViewModel();
+				carouselData = new ko.bootstrap.CarouselModel({
+					slides: slides
+				});
 
-                ko.applyBindings(viewModel);
-            });
+				self.carousel = ko.computed(function() {
+					return carouselData;
+				});
+
+				self.jsFrameworks = ko.observableArray([
+					'Angular',
+					'Canjs',
+					'Batman',
+					'Meteor',
+					'Ember',
+					'Backbone',
+					'Knockout',
+					'Knockback',
+					'Spine',
+					'Sammy',
+					'YUI',
+					'Closure',
+					'jQuery'
+				]);
+
+				self.frameworkToAdd = ko.observable("");
+				self.addFramework = function() {
+					self.jsFrameworks.push(self.frameworkToAdd());
+				};
+
+				self.removeFramework = function(framework) {
+					self.jsFrameworks.remove(framework);
+				};
+			};
+
+			$(function() {
+				// make code pretty
+				window.prettyPrint && prettyPrint();
+
+				var viewModel = new ExampleViewModel();
+
+				ko.applyBindings(viewModel);
+			});
         </script>
 
         <script type="text/html" id="popoverTemplate">
@@ -481,8 +547,8 @@ var ViewModel = function() {
         <script type="text/html" id="popoverBindingTemplate">
             <button class="close pull-right" type="button" data-dismiss="popover">&times</button>
             <form>
-                <label>Popover Binding Header</label>
-                <input type="text" data-bind="value: popoverBindingHeader, valueUpdate:'afterkeydown'" />
+			<label>Popover Binding Header</label>
+			<input type="text" data-bind="value: popoverBindingHeader, valueUpdate:'afterkeydown'" />
             </form>
         </script>
     </body>

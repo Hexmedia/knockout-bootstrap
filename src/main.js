@@ -1,20 +1,16 @@
 //UUID
-
-
 ko.bootstrap = {
 	s4: function() {
-		return Math.floor((1 + Math.random()) * 0x10000)
-				.toString(16)
-				.substring(1);
+		return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 	},
 	guid: function() {
 		return this.s4() + this.s4() + "-" + this.s4() + "=" + this.s4() + "=" + this.s4() + "=" + this.s4() + this.s4() + this.s4();
 	}
 };
 
-var te = new ko.nativeTemplateEngine();
+ko.bootstrap.te = new ko.nativeTemplateEngine();
 
-te.addTemplate = function(name, html) {
+ko.bootstrap.te.addTemplate = function(name, html) {
 	$("body").append("<script type=\"text/html\" id=\"" + name + "\">" + html + "</script>");
 };
 

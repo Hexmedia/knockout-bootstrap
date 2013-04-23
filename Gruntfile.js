@@ -51,20 +51,21 @@ module.exports = function(grunt) {
 					"src/tooltip.js",
 					"src/typehead.js",
 					"src/radio.js",
-					"src/checkbox.js"
+					"src/checkbox.js",
+					"src/carousel.js"
 				]
 			}
 		},
-				"pre-uglify": {
+		"pre-uglify": {
 			all: {
 				files: {
-					"dist/knockout-bootstrap.pre-min.js": [ "dist/knockout-bootstrap.js" ]
+					"dist/knockout-bootstrap.pre-min.js": ["dist/knockout-bootstrap.js"]
 				},
 				options: {
 					banner: "/*! Knockout-Bootstrap v<%= pkg.version %> | " +
-						"(c) 2013 jQuery Foundation, Inc. | " +
-						"//@ sourceMappingURL=knockout-bootstrap.min.map\n" +
-						"*/"
+							"(c) 2013 jQuery Foundation, Inc. | " +
+							"//@ sourceMappingURL=knockout-bootstrap.min.map\n" +
+							"*/"
 				}
 			}
 		},
@@ -331,21 +332,21 @@ module.exports = function(grunt) {
 
 		return !nonascii;
 	});
-	
-	grunt.registerMultiTask( "pre-uglify", function() {
+
+	grunt.registerMultiTask("pre-uglify", function() {
 		var banner = this.options().banner;
 
-		this.files.forEach(function( mapping ) {
+		this.files.forEach(function(mapping) {
 			// Join src
-			var input = mapping.src.map(function( file ) {
-				var contents = grunt.file.read( file );
+			var input = mapping.src.map(function(file) {
+				var contents = grunt.file.read(file);
 
 				// Strip banners
-				return contents.replace( /^\/\*!(?:.|\n)*?\*\/\n?/gm, "" );
+				return contents.replace(/^\/\*!(?:.|\n)*?\*\/\n?/gm, "");
 			}).join("\n");
 
 			// Write temp file (with optional banner)
-			grunt.file.write( mapping.dest, ( banner || "" ) + input );
+			grunt.file.write(mapping.dest, (banner || "") + input);
 		});
 	});
 
@@ -357,6 +358,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 
 	// Default task(s).
-	grunt.registerTask('default', ['build', "pre-uglify", 'uglify']);
+	grunt.registerTask("default", ["build", "pre-uglify", "uglify", "dist:*", "compare_size"]);
 
 };

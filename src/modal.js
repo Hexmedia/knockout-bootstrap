@@ -1,14 +1,10 @@
 (function($) {
 	ko.bootstrap.ModalModel = function(options) {
 		var self = this;
-
-		if (typeof options === "undefined") {
-			options = {};
-		}
-
+		
 		options = $.extend({
 			buttonTemplate: "kb_modal_button"
-		}, options);
+		}, options || {});
 
 		self.buttonTemplate = "kb_modal_button";
 
@@ -76,7 +72,7 @@
 		};
 	};
 
-	te.addTemplate("kb_modal", "\
+	ko.bootstrap.te.addTemplate("kb_modal", "\
 	<div class=\"modal hide fade\" data-bind=\"attr: {'id': id}\">\
 		<div class=\"modal-header\">\
 			<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\
@@ -90,7 +86,7 @@
 		</div>\
 	</div>");
 
-	te.addTemplate("kb_modal_button", "\
+	ko.bootstrap.te.addTemplate("kb_modal_button", "\
 			<div data-bind=\"click: action, text:name, attr: {'class': clazz}\"></div>\
 		");
 
@@ -105,7 +101,7 @@
 			action = allBindings.action || "click";
 
 			$(element).bind(action, function() {
-				ko.renderTemplate(template, viewModel, {templateEngine: te}, $("<div />").appendTo($("body")), "replaceNode");
+				ko.renderTemplate(template, viewModel, {templateEngine: ko.bootstrap.te}, $("<div />").appendTo($("body")), "replaceNode");
 				viewModel().show();
 			});
 		}

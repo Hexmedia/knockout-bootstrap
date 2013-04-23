@@ -35,7 +35,7 @@
 	ko.bootstrap.ConfirmModel.prototype = new ko.bootstrap.ModalModel();
 	ko.bootstrap.ConfirmModel.prototype.constructor = ko.bootstrap.ConfirmModel;
 
-	te.addTemplate("kb_confirm", "\
+	ko.bootstrap.te.addTemplate("kb_confirm", "\
 	<div class=\"modal hide fade\" data-bind=\"attr: {'id': id}\">\
 		<div class=\"modal-body\" data-bind=\"html:body\">\
 		</div>\

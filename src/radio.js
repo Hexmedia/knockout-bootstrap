@@ -1,5 +1,5 @@
 ko.bindingHandlers.radio = {
-    init: function(element, valueAccessor, allBindings, data, context) {
+    init: function(element, valueAccessor, allBindings) {
         var $buttons, $element, observable;
         observable = valueAccessor();
         if (!ko.isWriteableObservable(observable)) {
@@ -17,7 +17,7 @@ ko.bindingHandlers.radio = {
             btn = this;
             $btn = $(btn);
             radioValue = elementBindings.radioValue || $btn.attr("data-value") || $btn.attr("value") || $btn.text();
-            $btn.on("click", function() {
+            $btn.bind("click", function() {
                 observable(ko.utils.unwrapObservable(radioValue));
             });
             return ko.computed({
