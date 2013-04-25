@@ -2,7 +2,5 @@ node_modules
 npm-debug.log
 nbproject/private
 
-/dist/knockout-bootstrap.pre-min.js
-/dist/knockout-bootstrap.min.js
-/dist/knockout-bootstrap.js
-/dist/knockout-bootstrap.min.map
+/dist/*
+
