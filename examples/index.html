@@ -74,7 +74,7 @@
                         </div>
                         <p>
                             Knockout-bootstrap is a set of custom knockout binding handlers that provide access
-                            to Bootstrap javascript widgets. 
+                            to Bootstrap javascript widgets.
                         </p>
                         <p>
 						<h4>Features</h4>
@@ -445,7 +445,7 @@ var ViewModel = function() {
                         <h2>Examples</h2>
 						<p>The slideshow below shows a generic plugin and component for cycling through elements like a carousel.</p>
 						<div class="bs-docs-example">
-							<div id="myCarousel" data-bind="carousel: carouselData"></div>
+							<div id="myCarousel" data-bind="carousel: carousel"></div>
 						</div>
 					</section>
                 </div>
@@ -496,12 +496,14 @@ var ViewModel = function() {
 				}));
 
 				carouselData = new ko.bootstrap.CarouselModel({
-					slides: slides
+					slides: slides()
 				});
 
 				self.carousel = ko.computed(function() {
 					return carouselData;
 				});
+
+				console.log(self.carousel);
 
 				self.jsFrameworks = ko.observableArray([
 					'Angular',
