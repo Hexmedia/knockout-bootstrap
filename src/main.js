@@ -14,7 +14,7 @@ ko.bootstrap = {
 ko.bootstrap.te = new ko.nativeTemplateEngine();
 
 ko.bootstrap.te.addTemplate = function(name, html) {
-	$("body").append("<script type=\"text/html\" id=\"" + name + "\">" + html + "</script>");
+	document.write("<script type=\"text/html\" id=\"" + name + "\">" + html + "</script>");
 };
 
 // Outer HTML
