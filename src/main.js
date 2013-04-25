@@ -5,6 +5,9 @@ ko.bootstrap = {
 	},
 	guid: function() {
 		return this.s4() + this.s4() + "-" + this.s4() + "=" + this.s4() + "=" + this.s4() + "=" + this.s4() + this.s4() + this.s4();
+	},
+	id: function() {
+		return this.s4();
 	}
 };
 

@@ -445,7 +445,7 @@ var ViewModel = function() {
                         <h2>Examples</h2>
 						<p>The slideshow below shows a generic plugin and component for cycling through elements like a carousel.</p>
 						<div class="bs-docs-example">
-							<div id="myCarousel" data-bind="carousel: carouselData"></div>
+							<div data-bind="carousel: carousel"></div>
 						</div>
 					</section>
                 </div>
@@ -496,7 +496,7 @@ var ViewModel = function() {
 				}));
 
 				carouselData = new ko.bootstrap.CarouselModel({
-					slides: slides
+					slides: slides()
 				});
 
 				self.carousel = ko.computed(function() {
