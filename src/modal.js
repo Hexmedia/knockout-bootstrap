@@ -11,9 +11,9 @@
 		self.title = ko.observable();
 		self.body = ko.observable();
 		self.buttonsData = ko.observableArray([]);
-		self.id = ko.observable();
+		self.id = "modal_" + ko.bootstrap.id();
 		self.modal = function() {
-			return $("#" + self.id());
+			return $("#" + self.id);
 		};
 
 		self.buttons = ko.computed(function() {
@@ -60,10 +60,10 @@
 		self.modal = ko.observable();
 
 		self.id = ko.computed(function() {
-			return (self.modal() ? self.modal().id() : null);
+			return (self.modal() ? self.modal().id : null);
 		});
 
-		self.action = function() {
+		self.action = function(a,b,c,d) {
 			if (typeof options.action === "function") {
 				options.action();
 			} else {
@@ -99,7 +99,7 @@
 
 			template = allBindings.headerTemplate || "kb_modal";
 			action = allBindings.action || "click";
-
+			
 			$(element).bind(action, function() {
 				ko.renderTemplate(template, viewModel, {templateEngine: ko.bootstrap.te}, $("<div />").appendTo($("body")), "replaceNode");
 				viewModel().show();
