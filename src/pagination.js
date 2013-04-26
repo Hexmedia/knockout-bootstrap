@@ -45,11 +45,11 @@
 		};
 
 		self.firstPage = function() {
-			self.page(1);
+			self.goToPage(1);
 		};
 
 		self.lastPage = function() {
-			self.page(self.totalPages());
+			self.goToPage(self.totalPages());
 		};
 
 
