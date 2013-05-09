@@ -1,7 +1,7 @@
 (function($) {
 	ko.bootstrap.ModalModel = function(options) {
 		var self = this;
-		
+
 		options = $.extend({
 			buttonTemplate: "kb_modal_button"
 		}, options || {});
@@ -11,7 +11,7 @@
 		self.title = ko.observable();
 		self.body = ko.observable();
 		self.buttonsData = ko.observableArray([]);
-		self.id = ko.observable();
+		self.id = ko.observable(ko.bootstrap.id());
 		self.modal = function() {
 			return $("#" + self.id());
 		};
