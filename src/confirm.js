@@ -4,8 +4,13 @@
 		var self = this, okButton, cancelButton;
 
 		if (typeof options === "undefined") {
-			options = {};
+			options = {
+				action: function() {
+				}
+			};
 		}
+
+		self.action = options.action;
 
 		options = $.extend({
 			message: "Do you want to do this?"
@@ -22,7 +27,7 @@
 			clazz: "btn btn-success",
 			name: "Ok",
 			action: function() {
-				options.success(self);
+				self.action(self);
 			}
 		});
 

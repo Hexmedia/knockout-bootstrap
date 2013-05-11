@@ -58,14 +58,15 @@
 		self.clazz = ko.observable(options.clazz);
 		self.name = ko.observable(options.name);
 		self.modal = ko.observable();
+		self.action = options.action;
 
 		self.id = ko.computed(function() {
 			return (self.modal() ? self.modal().id() : null);
 		});
 
 		self.action = function() {
-			if (typeof options.action === "function") {
-				options.action();
+			if (typeof self.action === "function") {
+				self.action();
 			} else {
 				self.modal().close();
 			}
