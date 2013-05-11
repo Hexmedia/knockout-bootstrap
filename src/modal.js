@@ -11,9 +11,10 @@
 		self.title = ko.observable();
 		self.body = ko.observable();
 		self.buttonsData = ko.observableArray([]);
-		self.id = ko.observable(ko.bootstrap.id());
+		self.id = "modal_" + ko.bootstrap.id();
+
 		self.modal = function() {
-			return $("#" + self.id());
+			return $("#" + self.id);
 		};
 
 		self.buttons = ko.computed(function() {
@@ -61,16 +62,17 @@
 		self.action = options.action;
 
 		self.id = ko.computed(function() {
-			return (self.modal() ? self.modal().id() : null);
+			return (self.modal() ? self.modal().id : null);
 		});
 
-		self.action = function() {
-			if (typeof self.action === "function") {
+		self.onclick = function() {
+			if (typeof options.action === "function") {
 				self.action();
 			} else {
 				self.modal().close();
 			}
-		};
+		}
+		;
 	};
 
 	ko.bootstrap.te.addTemplate("kb_modal", "\
@@ -88,7 +90,7 @@
 	</div>");
 
 	ko.bootstrap.te.addTemplate("kb_modal_button", "\
-			<div data-bind=\"click: action, text:name, attr: {'class': clazz}\"></div>\
+			<div data-bind=\"click: onclick, text:name, attr: {'class': clazz}\"></div>\
 		");
 
 	ko.bindingHandlers.modal = {

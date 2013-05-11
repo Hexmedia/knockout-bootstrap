@@ -28,10 +28,13 @@
 			name: "Ok",
 			action: function() {
 				self.action(self);
+				self.close();
 			}
 		});
 
 		self.body(options.message);
+
+		self.data = ko.observable();
 
 		self.buttonsData.push(cancelButton);
 		self.buttonsData.push(okButton);
@@ -55,10 +58,17 @@
 			return ko.bindingHandlers.modal.init();
 		},
 		update: function(element, valueAccessor, allBindingsAccessor, vm, bindingContext) {
-			var viewModel = valueAccessor(), allBindings = allBindingsAccessor(), ret;
-			allBindings.headerTemplate = "kb_confirm";
+			var viewModel = valueAccessor(), allBindings = allBindingsAccessor(), ret, action;
+
+			allBindings.headerTemplate = allBindings.headerTemplate || "kb_confirm";
 
 			ret = ko.bindingHandlers.modal.update(element, valueAccessor, allBindingsAccessor, vm, bindingContext);
+
+			action = allBindings.action || "click";
+
+			$(element).bind('click', function() {
+				viewModel().data(vm);
+			});
 
 			return ret;
 		}
