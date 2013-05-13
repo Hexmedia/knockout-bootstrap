@@ -10,11 +10,11 @@
 			};
 		}
 
-		self.action = options.action;
-
 		options = $.extend({
 			message: "Do you want to do this?"
 		}, options);
+
+		self.action = options.action;
 
 		$.extend(true, this, ko.bootstrap.ModalModel);
 

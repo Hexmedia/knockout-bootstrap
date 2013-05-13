@@ -11,7 +11,7 @@
 		self.title = ko.observable();
 		self.body = ko.observable();
 		self.buttonsData = ko.observableArray([]);
-		self.id = "modal_" + ko.bootstrap.id();
+		self.id = options.id || "modal_" + ko.bootstrap.id();
 
 		self.modal = function() {
 			return $("#" + self.id);
@@ -60,14 +60,17 @@
 		self.name = ko.observable(options.name);
 		self.modal = ko.observable();
 		self.action = options.action;
+		self.caller = null;
 
 		self.id = ko.computed(function() {
 			return (self.modal() ? self.modal().id : null);
 		});
 
-		self.onclick = function() {
-			if (typeof options.action === "function") {
-				self.action();
+		self.onclick = function(a, b, c) {
+			console.log(this, a, b, c);
+
+			if (typeof self.action === "function") {
+				self.action({});
 			} else {
 				self.modal().close();
 			}
@@ -90,12 +93,12 @@
 	</div>");
 
 	ko.bootstrap.te.addTemplate("kb_modal_button", "\
-			<div data-bind=\"click: onclick, text:name, attr: {'class': clazz}\"></div>\
+			<div data-bind=\"modal_button_action: $parent, text:name, attr: {'class': clazz}\"></div>\
 		");
 
 	ko.bindingHandlers.modal = {
 		init: function() {
-			return {"controlsDescendantBindings": true};
+			return {"controlsDescendantBindings": false};
 		},
 		update: function(element, valueAccessor, allBindingsAccessor, vm, bindingContext) {
 			var viewModel = valueAccessor(), allBindings = allBindingsAccessor(), template, action;
@@ -106,6 +109,26 @@
 			$(element).bind(action, function() {
 				ko.renderTemplate(template, viewModel, {templateEngine: ko.bootstrap.te}, $("<div />").appendTo($("body")), "replaceNode");
 				viewModel().show();
+				viewModel().caller = element;
+
+				return false;
+			});
+		}
+	};
+
+	ko.bindingHandlers.modal_button_action = {
+		init: function() {
+			return {"controlsDescendantBindings": false};
+		},
+		update: function(element, valueAccessor, allBindingsAccessor, vm, bindingContext) {
+			var viewModel = valueAccessor(), allBindings = allBindingsAccessor(), template, action;
+
+			console.log(allBindings);
+
+			$(element).click(function() {
+				vm.onclick(viewModel);
+
+				return false;
 			});
 		}
 	};
