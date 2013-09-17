@@ -78,8 +78,7 @@
 
 	ko.bootstrap.te.addTemplate("kb_pagination", "\
 			<!-- ko if: totalPages() > 1 -->\
-				<div class=\"pagination\">\
-					<ul>\
+					<ul class=\"pagination\">\
 						<li data-bind=\"css:{disabled:isFirstPage()}\">\
 							<a href=\"#\" data-bind=\"click: $root.firstPage\">&laquo; first</a>\
 						</li>\
@@ -98,7 +97,6 @@
 							<a href=\"#\" data-bind=\"click: $root.lastPage\">last &raquo;</a>\
 						</li>\
 					</ul>\
-				</div>\
 			<!-- /ko -->");
 
 	ko.bindingHandlers.pagination = {
