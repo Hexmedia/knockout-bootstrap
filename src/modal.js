@@ -79,17 +79,21 @@
 	};
 
 	ko.bootstrap.te.addTemplate("kb_modal", "\
-	<div class=\"modal hide fade\" data-bind=\"attr: {'id': id}\">\
-		<div class=\"modal-header\">\
-			<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\
-			<h3 data-bind=\"text: title\">Modal header</h3>\
-		</div>\
-		<div class=\"modal-body\" data-bind=\"html:body\">\
-		</div>\
-		<div class=\"modal-footer\" data-bind=\"foreach: buttons\">\
-			<!-- ko template: {'name': $parent.buttonTemplate} -->\
-			<!-- /ko -->\
-		</div>\
+        <div class=\"modal fade\" data-bind=\"attr: {'id': id}\">\
+            <div class=\"modal-dialog\">\
+                <div class=\"modal-content\">\
+                    <div class=\"modal-header\">\
+                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\
+                        <h3 data-bind=\"text: title\">Modal header</h3>\
+                    </div>\
+                    <div class=\"modal-body\" data-bind=\"html:body\">\
+                    </div>\
+                    <div class=\"modal-footer\" data-bind=\"foreach: buttons\">\
+                        <!-- ko template: {'name': $parent.buttonTemplate} -->\
+                        <!-- /ko -->\
+                    </div>\
+                </div>\
+            </div>\
 	</div>");
 
 	ko.bootstrap.te.addTemplate("kb_modal_button", "\
