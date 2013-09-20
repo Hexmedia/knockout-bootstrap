@@ -44,14 +44,18 @@
 	ko.bootstrap.ConfirmModel.prototype.constructor = ko.bootstrap.ConfirmModel;
 
 	ko.bootstrap.te.addTemplate("kb_confirm", "\
-	<div class=\"modal hide fade\" data-bind=\"attr: {'id': id}\">\
-		<div class=\"modal-body\" data-bind=\"html:body\">\
-		</div>\
-		<div class=\"modal-footer\" data-bind=\"foreach: buttons\">\
-			<!-- ko template: {'name': $parent.buttonTemplate} -->\
-			<!-- /ko -->\
-		</div>\
-	</div>");
+        <div class=\"modal fade\" data-bind=\"attr: {'id': id}\">\
+            <div class=\"modal-dialog\">\
+                <div class=\"modal-content\">\
+		    <div class=\"modal-body\" data-bind=\"html:body\">\
+		    </div>\
+                    <div class=\"modal-footer\" data-bind=\"foreach: buttons\">\
+                        <!-- ko template: {'name': $parent.buttonTemplate} -->\
+                        <!-- /ko -->\
+                    </div>\
+                </div>\
+            </div>\
+        </div>");
 
 	ko.bindingHandlers.confirm = {
 		init: function() {
